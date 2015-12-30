@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151225084410) do
+ActiveRecord::Schema.define(version: 20151229024537) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "title"
@@ -46,9 +46,16 @@ ActiveRecord::Schema.define(version: 20151225084410) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "fb_uid"
+    t.string   "fb_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["fb_uid"], name: "index_users_on_fb_uid"
+  add_index "users", ["provider"], name: "index_users_on_provider"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["uid"], name: "index_users_on_uid"
 
 end

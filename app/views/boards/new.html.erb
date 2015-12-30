@@ -9,7 +9,7 @@
 <% end %>
 
 <div>
-	<%= f.collection_select(:category_id, Category.all, :id, :name) %>
+	<%= f.collection_select( :category_id, Category.all, :id, :name) %>
 </div>
 
 <div >
@@ -23,5 +23,5 @@
 </div>
 
     <%= f.submit "Create" %>
-    
+
 <% end %>

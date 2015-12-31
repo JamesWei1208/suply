@@ -12,6 +12,8 @@ class BoardsController < ApplicationController
 
 	def create
 		@board = Board.new( board_params )
+		@board.user = current_user
+		
 		if @board.save
 			flash[:notice] = "Board was successfully created"
 			redirect_to boards_url
@@ -20,7 +22,9 @@ class BoardsController < ApplicationController
 		end
 	end
 
-	def show	
+	def show
+		@messages = @board.messages.all
+		@message = Message.new
 	end
 
 	def edit
@@ -28,7 +32,7 @@ class BoardsController < ApplicationController
 
 	def update
 		if @board.update(board_params)
-			redirect_to board_url(@board), :id => @board
+			redirect_to board_url(@board)
 			flash[:notice] = "board was successfully updated"
 		else
 			render :action => :edit

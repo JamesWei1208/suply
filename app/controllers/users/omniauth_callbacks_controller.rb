@@ -13,6 +13,6 @@ def facebook
   end
 
   def failure
-    redirect_to boards_path
+    redirect_to root_path
   end
 end

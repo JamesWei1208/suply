@@ -1,3 +1,39 @@
+<h4>Title</h4>
 <%=	@board.title %>
+
+<h4>Content</h4>
 <%= simple_format( @board.content ) %>
-<p><%= link_to 'back_to_index',boards_path %> </p>
+
+<p><%= link_to 'back_to_index', boards_path %> </p>
+
+<h4>留言：</h4>
+
+<ul>
+	<% @messages.each do |message| %>
+	<li>
+		<%= message.word %>
+	</li>
+	<% end %>
+
+</ul>
+
+<%= form_for @message, :url => board_messages_path( @board ) do |f| %>
+
+<% if @message.errors.any? %>
+<ul>
+	<% @message.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
+<% end %>
+
+<div >
+	<%= f.label :word, "Comment" %>
+	<%= f.text_field :word %>
+
+</div>
+<%= f.submit "Create" %>
+<% end %>
+
+
+
